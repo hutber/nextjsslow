@@ -1,0 +1,114 @@
+{
+  "name": "goldendemon.hutber.com",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "node": "node --experimental-modules --inspect server.js",
+    "dev": "nodemon --inspect --exec babel-node server.js",
+    "graphql": "nodemon -r dotenv/config --experimental-modules --inspect=[9222] graphql.js",
+    "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
+    "build:client": "next build ./src/client",
+    "build:server": "next build ./src/server",
+    "start": "cross-env NODE_ENV=production node dist/server",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "graph": "graphpack",
+    "buildgraph": "graphpack build",
+    "eslint": "eslint . --fix",
+    "lint": "npm run lint-scripts && npm run lint-styles",
+    "lint-scripts": "eslint './{src/**,test/**,config/**,.}/*.js'",
+    "lint-styles": "stylelint './src/**/*.css'",
+    "commit": "npx git-cz"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "prettier --write",
+        "eslint --fix",
+        "git add"
+      ],
+      "*.json": [
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "server.js",
+      "build/*.js",
+      ".next"
+    ]
+  },
+  "dependencies": {
+    "@material-ui/styles": "^4.2.0",
+    "apollo-boost": "^0.4.3",
+    "clsx": "^1.0.4",
+    "express": "^4.16.4",
+    "express-graphiql-middleware": "^1.0.4",
+    "express-request-proxy": "^2.2.2",
+    "graphql-lodash": "^1.3.4",
+    "graphql-tag": "^2.10.1",
+    "next": "^8.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.8",
+    "react-dom": "^16.8.6",
+    "react-markdown": "^4.0.6"
+  },
+  "devDependencies": {
+    "@apollo/react-common": "0.1.0-beta.8",
+    "@apollo/react-hooks": "0.1.0-beta.10",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@material-ui/core": "^4.2.0",
+    "@material-ui/icons": "^4.0.1",
+    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.3",
+    "apollo-link-http": "^1.5.15",
+    "apollo-server": "^2.6.4",
+    "apollo-server-express": "^2.6.4",
+    "axios": "^0.19.0",
+    "babel-eslint": "^10.0.1",
+    "cheerio": "^1.0.0-rc.3",
+    "commitizen": "^3.1.1",
+    "concurrently": "^4.1.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "dotenv": "^8.0.0",
+    "easy-peasy": "^2.5.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react-app": "^5.0.1",
+    "express-graphql": "^0.8.0",
+    "graphpack": "^1.0.9",
+    "htmlparser2": "^3.10.1",
+    "husky": "^2.3.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "lint-staged": "^8.1.7",
+    "nodemon": "^1.19.1",
+    "pg": "^7.11.0",
+    "postgraphile": "^4.4.0",
+    "postgraphile-apollo-server": "^0.1.1",
+    "postgraphile-plugin-connection-filter": "^1.1.1",
+    "prettier": "^1.17.1",
+    "stylelint-config-standard": "^18.3.0",
+    "webpackbar": "^3.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
+    }
+  }
+}

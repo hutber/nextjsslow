@@ -1,0 +1,35 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": ["prettier", "react-app", "eslint:recommended", "plugin:import/recommended"],
+  "parser": "babel-eslint",
+  "plugins": ["prettier", "jest", "import", "react"],
+  "rules": {
+    "strict": [2, "never"],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.js", "**/src/**"]
+      }
+    ],
+    "prefer-const": "error",
+    "no-unused-vars": "error",
+    "import/unambiguous": "off",
+    "import/prefer-default-export": "off",
+    "linebreak-style": "off",
+    "prettier/prettier": "error",
+    "import/no-unresolved": "off",
+    "comma-dangle": ["error", "always-multiline"],
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/valid-expect": "error"
+  }
+}
